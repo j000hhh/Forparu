@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For My Valentine ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  color: white;
+  text-align: center;
+}
+
+section {
+  padding: 35px 20px;
+}
+
+.card {
+  background: rgba(255,255,255,0.15);
+  border-radius: 20px;
+  padding: 25px;
+  max-width: 650px;
+  margin: auto;
+}
+
+img {
+  width: 45%;
+  border-radius: 15px;
+  margin: 10px;
+}
+
+button {
+  background: white;
+  color: #ff4d6d;
+  border: none;
+  padding: 12px 25px;
+  font-size: 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.game-area {
+  position: relative;
+  height: 280px;
+  overflow: hidden;
+}
+
+.heart {
+  position: absolute;
+  font-size: 32px;
+  cursor: pointer;
+  animation: fall linear;
+}
+
+@keyframes fall {
+  from { top: -40px; }
+  to { top: 100%; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- CHANGE HER NAME BELOW -->
+<script>
+const herName = "Krismastree🫣🫶🏿";   // 👈 ONLY CHANGE THIS
+</script>
+
+<section>
+  <h1 id="title"></h1>
+  <div class="card">
+    <p>This little website is made only for you 💕</p>
+    <button onclick="playMusic()">🎵 Play Our Song</button>
+  </div>
+</section>
+
+<section>
+  <div class="card">
+    <h2>📸 Our Memories</h2>
+    <img src="photo1.jpg">
+    <img src="photo2.jpg">
+  </div>
+</section>
+
+<section>
+  <div class="card">
+    <h2>💌 My Message</h2>
+    <p id="messageText"></p>
+  </div>
+</section>
+
+<section>
+  <div class="card">
+    <h2>🎮 Catch My Love</h2>
+    <p>Tap the falling hearts 💖</p>
+    <div class="game-area" id="gameArea"></div>
+    <button onclick="startGame()">Start Game</button>
+    <p id="gameMsg"></p>
+  </div>
+</section>
+
+<section>
+  <p>Made with ❤️ just for you</p>
+</section>
+
+<audio id="song" src="song.mp3"></audio>
+
+<script>
+document.getElementById("title").innerText =
+  "❤️ Happy Valentine’s Day, " + herName + " ❤️";
+
+document.getElementById("messageText").innerHTML =
+  herName + ", every moment with you feels special.<br>" +
+  "You are my happiness, my peace,<br>" +
+  "and my forever choice ❤️";
+
+function playMusic() {
+  document.getElementById("song").play();
+}
+
+const messages = [
+  "I love you ❤️",
+  "Forever us 💍",
+  "You are my world 🌍",
+  "My Valentine 💕",
+  "Always you 😊"
+];
+
+function startGame() {
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 90 + "%";
+    heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+
+    heart.onclick = () => {
+      document.getElementById("gameMsg").innerText =
+        messages[Math.floor(Math.random() * messages.length)];
+      heart.remove();
+    };
+
+    document.getElementById("gameArea").appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+  }, 800);
+}
+</script>
+
+</body>
+</html>
